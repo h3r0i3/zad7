@@ -1,0 +1,1 @@
+<?php echo "tutaj bedzie skrypt odpowiedzialny za tworzenie chmury!" ?>
