@@ -7,14 +7,23 @@
 		header('Location: index.php');
 		exit();
 	}
-	$login=$_POST['user']; 
-	$pass=$_POST['pass']; 
-	$a=$login = $_POST['user'];
-	$b=$haslo = $_POST['pass'];
-	$_SESSION["$a"];
+	$a=$_SESSION["user"];
 	echo "<br>";
-	echo "Wartość zmiennej sesyjnej do zliczania błędów wynosi: " .$_SESSION['$_SESSION["user"]'];
-	
+	$b = $_SESSION["$a"];
+	if ($b >1){
+	$servername="localhost";
+	$username="krisg_lukasz";
+	$password="123654";
+	$dbname="krisg_lukasz2";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$sql = "SELECT data FROM logi WHERE user='$a' and proba = 'blad' ORDER BY id DESC LIMIT 1;";
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+	$conn->close();
+	echo "<br>";
+	echo "Ostatnia błędna próba logowania na to konto: ".$a." - odbyła się: ".$row['data'];
+	echo "<br>";
+	}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
