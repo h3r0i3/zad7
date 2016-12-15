@@ -1,10 +1,13 @@
-<?php
-
+﻿<?php
 	session_start();
-	echo "tutaj bedzie skrypt odpowiedzialny za tworzenie i obsluge chmury dla: ".$_SESSION["user"];
+	echo $_SESSION["czywyslano"];
+	echo "<br>";
+	unset($_SESSION["czywyslano"]);
+	echo "<br>";
+	echo "<br>";
 	if (!isset($_SESSION['zalogowany']))
 	{
-		header('Location: index.php');
+		header('Location: http://giermach.gredziszewski.pl/z7/index.php');
 		exit();
 	}
 	$a=$_SESSION["user"];
@@ -21,6 +24,8 @@
 	$row = $result->fetch_assoc();
 	$conn->close();
 	echo "<br>";
+	echo "<br>";
+	echo "<br>";
 	echo "Ostatnia błędna próba logowania na to konto: ".$a." - odbyła się: ".$row['data'];
 	echo "<br>";
 	}
@@ -36,15 +41,36 @@
 	top: 10px	
 	}
 	
+	#formularz{
+	display: inline-block;
+	position: absolute;
+	left: 50px;
+	top: 80px	
+	}
+	
+	#wyswietl{
+	display: inline-block;
+	position: absolute;
+	right: 50px;
+	top: 50px	
+	}
+	
+
 </style>
 </head>
 <BODY>
 	<div id="glowny">
-		<div id="wyloguj"
+		
+		<div id="wyloguj">
 		<?php
 		echo "<p>Witaj ".$_SESSION['user'].'! [ <a href="http://giermach.gredziszewski.pl/z7/logout.php">Wyloguj się!</a> ]</p>';
 		?>
 		</div>
+		<div id="formularz">
+		<form action="odbierz.php" method="POST" ENCTYPE="multipart/form-data"> 
+		<input type="file" name="plik"/> 
+		<input type="submit" value="Wyślij plik"/> </form> </div>
+		<div id="wyswietl"><a onclick="location.href='wyswietl.php';"><input type="button" style="height:50px;"  value="Przejdź do swoich plików"></div>
 	</div>
 </BODY>
 </HTML>

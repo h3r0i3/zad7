@@ -69,11 +69,30 @@ if(isset($_POST['user'])){
 		else{
 			echo "Konto zosta³o utworzone";
 			mkdir("$user");
+			mkdir("$user/pliki", 0777);
 			$myfile = fopen("$user/chmura.php", "w") or die("Unable to open file!");
 			$source = "skrypttworzenia.php";
 			$destination = "$user/chmura.php";
 			copy($source, $destination) or die("B³¹d przy kopiowaniu");
 			fclose($myfile);
+			
+			$myfile1 = fopen("$user/download.php", "w") or die("Unable to open file!");
+			$source1 = "download1.php";
+			$destination1 = "$user/download.php";
+			copy($source1, $destination1) or die("B³¹d przy kopiowaniu");
+			fclose($myfile1);
+			
+			$myfile2 = fopen("$user/odbierz.php", "w") or die("Unable to open file!");
+			$source2 = "odbierz1.php";
+			$destination2 = "$user/odbierz.php";
+			copy($source2, $destination2) or die("B³¹d przy kopiowaniu");
+			fclose($myfile2);
+			
+			$myfile3 = fopen("$user/wyswietl.php", "w") or die("Unable to open file!");
+			$source3 = "wyswietl1.php";
+			$destination3 = "$user/wyswietl.php";
+			copy($source3, $destination3) or die("B³¹d przy kopiowaniu");
+			fclose($myfile3);
 			$conn = new mysqli($servername, $username, $password, $dbname);
 			$sql = "INSERT INTO users (user, pass) 
 			VALUES ('$user', '$pass');";

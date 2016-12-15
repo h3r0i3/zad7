@@ -1,8 +1,7 @@
 <?php
 	session_start();
-	$a= $_SESSION['sprawdzacz'];
 	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)){
-		header("Location: $a/chmura.php");
+		header("Location:".$_SESSION["user"]."/chmura.php");
 		exit();
 	}
 ?>
